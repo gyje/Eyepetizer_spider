@@ -1,13 +1,14 @@
 import json
 import requests
 import time
+from sys import argv
+script,date=argv
 headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/42.0'}
-date=time.strftime("%Y%M%D",time.localtime(time.time()))
 url="http://baobab.kaiyanapp.com/api/v1/feed?date="+date
 json_text=requests.get(url,headers=headers).text
 json_dict=json.loads(json_text)
 s=time.clock()
-fob=open("0.txt","w+")
+fob=open("info.txt","w+")
 video_num=int(json_dict["dailyList"][0]["total"])
 all_video_list=json_dict["dailyList"][0]["videoList"]
 for i in range(video_num):
